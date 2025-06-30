@@ -4,20 +4,17 @@ class Solution {
         int answer=nums[0]+nums[1]+nums[2];
         int n=nums.length;
 
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(i==j){
-                    for(int k=0;k<n;k++){
-                        int closest=nums[i]+nums[j]+nums[k];
-                        if(i==j || j==k){
-                            if(Math.abs(closest-target)<Math.abs(answer-target)){
-                                answer=closest;
-                            }
-                        }
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if (Math.abs(sum - target) < Math.abs(answer - target)) {
+                        answer = sum;
                     }
                 }
             }
         }
+
         return answer;
     }
 }
